@@ -1,24 +1,19 @@
 package Base;
 
 import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.concurrent.TimeUnit;
-
-import Utility.Util;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.remote.RemoteWebDriver;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 //import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class DriverManager {
 
 	public static ThreadLocal<WebDriver> webDriver = new ThreadLocal<WebDriver>();
-			
-	@BeforeTest
+
+	@BeforeMethod(alwaysRun = true)
 	public static void CreateDriver() throws MalformedURLException {
 		System.out.println("Driver Yaratiliyor************");
 		//driver.get(Util.properties("config", "Applink"));
@@ -38,7 +33,7 @@ public class DriverManager {
 		return webDriver.get();
 	}
 
-	@AfterTest
+	@AfterMethod(alwaysRun = true)
 	public synchronized void afterSuite() {
 		System.out.println("Driver kapaniyor************");
 		WebDriver driver = webDriver.get();
