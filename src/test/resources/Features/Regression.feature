@@ -9,7 +9,7 @@ Feature: Login Islemi
     Examples:
       | user                   | password |
       | typhoonakkus@gmail.com | 123456   |
-
+      | testuser@example.com   | abc123   |
 
   @regression
  Scenario: Create Account
