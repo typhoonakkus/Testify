@@ -21,22 +21,21 @@ public class DriverManager {
 	@BeforeTest
 	public static void CreateDriver() throws MalformedURLException {
 		System.out.println("Driver Yaratiliyor************");
-		//WebDriverManager.chromedriver().setup();
-		//WebDriver driver = new ChromeDriver();
 		//driver.get(Util.properties("config", "Applink"));
-
 		WebDriverManager.chromedriver().setup();
 		WebDriver driver = new ChromeDriver();
 		String baseURL=System.getProperty("baseURL");
 		driver.get(baseURL);
 		//driver.navigate().to("https://");
-		//driver.navigate().to("http://");		
-		driver.manage().window().maximize();		
-		webDriver.set(driver);
-		webDriver.get().manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
+		driver.manage().window().maximize();
+		driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
 		
 			//.implicitlyWait(Integer.parseInt((Util.properties("config", "ImplicitWait"))), TimeUnit.SECONDS);
-		
+		webDriver.set(driver);
+	}
+
+	public static WebDriver getDriver() {
+		return webDriver.get();
 	}
 
 	@AfterTest

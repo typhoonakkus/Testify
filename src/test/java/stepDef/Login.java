@@ -1,13 +1,7 @@
 package stepDef;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Assert;
 
-import Base.Driver;
-import Base.DriverManager;
 import Utility.Assertion;
 import Utility.Find;
 import Utility.Find.FTimeOut;
@@ -20,35 +14,34 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
 
-public class Login extends DriverManager {
+public class Login {
 
 
-    @Given("validate login page and click login")
+    @Given("validate login page")
     public void validate_login_page_and_click_login() {
-        WebElement loginBtn = Find.Element(Locator.id, "Top_Login", FTimeOut.MIDDLE);
-        Assertion.ElementExist(loginBtn);
-        Util.clickFunction(loginBtn, TimeOut.LOW);
+        WebElement phoneEmail = Find.Element(Locator.id, "PhoneOrEmail", FTimeOut.MIDDLE);
+        Assertion.ElementExist(phoneEmail);
     }
 
 	@When("write username {string}")
     public void write_username(String user) {
-		WebElement usrname = Find.Element(Locator.id, "txtLogInEM1", FTimeOut.MIDDLE);
-		Util.sendKeysFunction(usrname, user, TimeOut.HIGH);
+		WebElement userName = Find.Element(Locator.id, "PhoneOrEmail", FTimeOut.MIDDLE);
+		Util.sendKeysFunction(userName, user, TimeOut.HIGH);
     }
     @And("write password {string}")
     public void write_password(String password)  {
-    	WebElement pword = Find.Element( Locator.id, "txtLogInPW1", FTimeOut.MIDDLE);
-		Util.sendKeysFunction(pword, password, TimeOut.LOW);
+    	WebElement passWrd = Find.Element(Locator.name, "Password", FTimeOut.MIDDLE);
+		Util.sendKeysFunction(passWrd, password, TimeOut.LOW);
     }
     @And("clicks on login btn")
     public void clicks_on_login_btn() {
-    	WebElement loginBtn = Find.Element( Locator.id, "LogIn", FTimeOut.MIDDLE);
+    	WebElement loginBtn = Find.Element( Locator.xPath, "//button[text()='Giriş Yap']", FTimeOut.MIDDLE);
 		Util.clickFunction(loginBtn, TimeOut.LOW);
     }
     @Then("user is navigate to the home page")
     public void user_is_navigate_to_the_home_page() {
-        WebElement assertElement = Find.Element(Locator.linkText, "Profil", FTimeOut.MIDDLE);
-        Assertion.ElementExist(assertElement);
+        WebElement errorMessage = Find.Element(Locator.xPath, "//div[text()='Giriş bilgileri hatalıdır. Lütfen tekrar deneyiniz! Eğer hesabınız yoksa kayıt olunuz. ']", FTimeOut.MIDDLE);
+        Assertion.ElementExist(errorMessage);
     }
 
 }

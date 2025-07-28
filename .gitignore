@@ -1,2 +1,8 @@
 ﻿# Project exclude paths
-/target/
+target/
+
+# Allure test sonuçları
+allure-results/
+
+# Allure HTML raporu
+allure-report/

@@ -8,6 +8,7 @@ import io.cucumber.testng.CucumberOptions;
 		monochrome = true,
 		features = "src/test/resources/Features",
 		glue = {"stepDef","Hooks"},
+		//tags = "@Smoke",
 		//plugin = {"com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:"},
 		plugin = {"pretty",
 				"io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm"}
